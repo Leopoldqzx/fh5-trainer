@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FH5 Trainer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #52d12c; 
+            --hover-green: #45b325;
+            --discord-purple: #7042ff; 
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Sanfter Glow-Effekt oben links */
+        body::before {
+            content: "";
+            position: fixed;
+            top: -10%;
+            left: -10%;
+            width: 45%;
+            height: 65%;
+            background: radial-gradient(circle, rgba(82, 209, 44, 0.1) 0%, rgba(255,255,255,0) 70%);
+            z-index: -1;
+        }
+
+        /* Navigation mit Spenden-Button rechts oben */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 80px;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        /* Bereich für die Hauptinhalte */
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 70vh;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin: 0;
+            letter-spacing: -1px;
+        }
+
+        h1 span {
+            color: var(--primary-green);
+        }
+
+        p {
+            color: var(--text-gray);
+            max-width: 550px;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 20px 0 40px 0;
+        }
+
+        /* Container für die Buttons in der Mitte */
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 700;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-green {
+            background-color: var(--primary-green);
+        }
+
+        .btn-green:hover {
+            background-color: var(--hover-green);
+            transform: translateY(-2px);
+        }
+
+        .btn-discord {
+            background-color: var(--discord-purple);
+        }
+
+        .btn-discord:hover {
+            background-color: #5b35d6;
+            transform: translateY(-2px);
+        }
+
+        /* Fußzeile */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 25px 80px;
+            box-sizing: border-box;
+            font-size: 0.9rem;
+            border-top: 1px solid #f2f2f2;
+            background: white;
+        }
+
+        @media (max-width: 768px) {
+            nav, footer { padding: 20px; }
+            h1 { font-size: 2.8rem; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">FH5 Trainer</div>
+        <a href="https://www.paypal.me/LeopoldZelz918" target="_blank" class="btn btn-green" style="font-size: 0.95rem; padding: 10px 20px;">Support me here $</a>
+    </nav>
+
+    <main>
+        <h1>FH5 <span>Trainer</span></h1>
+        <p>Powerful, open-source trainer trusted by thousands of players. Designed for simplicity, built for performance.</p>
+        
+        <div class="hero-buttons">
+            <a href="https://discord.gg/usJ7khw8FJ" target="_blank" class="btn btn-discord">Discord Server</a>
+            <a href="https://cdn.discordapp.com/attachments/1348924942560792656/1466079352419782865/FH5.rar?ex=697b704c&is=697a1ecc&hm=5b52a75737e08fcbe29f901b1185213187c099f6ee43cf0a94073f07df79fdc9&" class="btn btn-green">Download FH5 Trainer</a>
+        </div>
+    </main>
+
+    <footer>
+        <div>FH5 Trainer</div>
+        <div style="color: #999;">© 2026 Alle Rechte vorbehalten</div>
+    </footer>
+
+</body>
+</html>
