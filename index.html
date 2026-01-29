@@ -1,166 +1,243 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FH5 Trainer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-green: #52d12c; 
-            --hover-green: #45b325;
-            --discord-purple: #7042ff; 
-            --text-dark: #1a1a1a;
-            --text-gray: #666;
-            --bg-light: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AXION</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #0b1220, #020409 70%);
+      color: #e6f1ff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
 
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            overflow-x: hidden;
-        }
+    /* NAVBAR */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 60px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid #3aa0ff;
+      box-shadow: 0 0 20px rgba(58,160,255,0.6);
+      animation: float 4s ease-in-out infinite;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
 
-        /* Sanfter Glow-Effekt oben links */
-        body::before {
-            content: "";
-            position: fixed;
-            top: -10%;
-            left: -10%;
-            width: 45%;
-            height: 65%;
-            background: radial-gradient(circle, rgba(82, 209, 44, 0.1) 0%, rgba(255,255,255,0) 70%);
-            z-index: -1;
-        }
+    .nav-right a {
+      background: linear-gradient(135deg, #3aa0ff, #5de0ff);
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      color: #020409;
+    }
 
-        /* Navigation mit Spenden-Button rechts oben */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 80px;
-        }
+    /* HERO */
+    .hero {
+      text-align: center;
+      margin-top: 90px;
+      animation: fadeUp 1s ease forwards;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero h1 {
+      font-size: 54px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+    .hero h1 span { color: #3aa0ff; }
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      font-size: 15px;
+      opacity: 0.85;
+    }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
+    .free-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #3aa0ff, #5de0ff);
+      padding: 15px 38px;
+      border-radius: 12px;
+      font-weight: 700;
+      color: #020409;
+      cursor: pointer;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .free-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(93,224,255,.7);
+    }
 
-        /* Bereich für die Hauptinhalte */
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 70vh;
-            text-align: center;
-            padding: 0 20px;
-        }
+    /* PAGES */
+    .page { display: none; }
+    .page.active { display: block; }
 
-        h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin: 0;
-            letter-spacing: -1px;
-        }
+    /* DOWNLOAD PAGE */
+    .downloads {
+      max-width: 1200px;
+      margin: 80px auto;
+      padding: 0 40px 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+      gap: 30px;
+      animation: fadeUp 0.8s ease forwards;
+    }
+    .card {
+      background: #0b1220;
+      border: 1px solid rgba(58,160,255,0.35);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 0 35px rgba(58,160,255,0.15);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 45px rgba(58,160,255,0.35);
+    }
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    .card p {
+      font-size: 13px;
+      opacity: .75;
+      margin-bottom: 18px;
+    }
+    .download-btn {
+      display: inline-block;
+      padding: 10px 22px;
+      background: linear-gradient(135deg, #3aa0ff, #5de0ff);
+      color: #020409;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+    }
 
-        h1 span {
-            color: var(--primary-green);
-        }
-
-        p {
-            color: var(--text-gray);
-            max-width: 550px;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin: 20px 0 40px 0;
-        }
-
-        /* Container für die Buttons in der Mitte */
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .btn {
-            text-decoration: none;
-            padding: 12px 28px;
-            border-radius: 10px;
-            font-weight: 700;
-            transition: all 0.2s ease-in-out;
-            cursor: pointer;
-            border: none;
-            font-size: 1.1rem;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .btn-green {
-            background-color: var(--primary-green);
-        }
-
-        .btn-green:hover {
-            background-color: var(--hover-green);
-            transform: translateY(-2px);
-        }
-
-        .btn-discord {
-            background-color: var(--discord-purple);
-        }
-
-        .btn-discord:hover {
-            background-color: #5b35d6;
-            transform: translateY(-2px);
-        }
-
-        /* Fußzeile */
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 25px 80px;
-            box-sizing: border-box;
-            font-size: 0.9rem;
-            border-top: 1px solid #f2f2f2;
-            background: white;
-        }
-
-        @media (max-width: 768px) {
-            nav, footer { padding: 20px; }
-            h1 { font-size: 2.8rem; }
-            .hero-buttons { flex-direction: column; width: 100%; }
-        }
-    </style>
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 12px;
+      opacity: 0.4;
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">FH5 Trainer</div>
-        <a href="https://www.paypal.me/LeopoldZelz918" target="_blank" class="btn btn-green" style="font-size: 0.95rem; padding: 10px 20px;">Support me here $</a>
-    </nav>
+  <nav class="nav">
+    <div class="brand">
+      <img src="avatar.gif" class="avatar" alt="AXION Avatar" onerror="this.onerror=null;this.src='avatar.png';">
+      <div class="logo">𝘼𝙓𝙄𝙊𝙉</div>
+    </div>
+    <div class="nav-right"><a href="https://discord.gg/usJ7khw8FJ" target="_blank">Discord</a></div>
+  </nav>
 
-    <main>
-        <h1>FH5 <span>Trainer</span></h1>
-        <p>Powerful, open-source trainer trusted by thousands of players. Designed for simplicity, built for performance.</p>
-        
-        <div class="hero-buttons">
-            <a href="https://discord.gg/usJ7khw8FJ" target="_blank" class="btn btn-discord">Discord Server</a>
-            <a href="https://cdn.discordapp.com/attachments/1348924942560792656/1466079352419782865/FH5.rar?ex=697b704c&is=697a1ecc&hm=5b52a75737e08fcbe29f901b1185213187c099f6ee43cf0a94073f07df79fdc9&" class="btn btn-green">Download FH5 Trainer</a>
+  <!-- PAGE 1 -->
+  <section id="home" class="page active">
+    <div class="hero">
+      <h1>DOMINATE WITH <span>AXION</span></h1>
+      <p>High quality tools. Clean interface. Maximum control.</p>
+      <div class="free-btn" onclick="openDownloads()">FREE</div>
+    </div>
+
+    <div class="videos" style="max-width:1100px;margin:80px auto 0;padding:0 40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:30px;">
+      <div class="video-box" style="background:#0b1220;border:1px solid rgba(58,160,255,.35);border-radius:16px;overflow:hidden;box-shadow:0 0 35px rgba(58,160,255,.15)">
+        <iframe width="100%" height="220" src="VIDEO_LINK_1" title="AXION Video 1" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <div class="video-box" style="background:#0b1220;border:1px solid rgba(58,160,255,.35);border-radius:16px;overflow:hidden;box-shadow:0 0 35px rgba(58,160,255,.15)">
+        <iframe width="100%" height="220" src="VIDEO_LINK_2" title="AXION Video 2" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 -->
+  <section id="downloads" class="page">
+    <div class="downloads">
+      <div class="card">
+        <img src="tiktok-bot.png" alt="Tiktok Bot" style="width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:14px;box-shadow:0 0 25px rgba(58,160,255,.25)">
+        <h3>Tiktok-Bot</h3>
+        <p>Automation & growth tool.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a class="download-btn" href="https://cdn.discordapp.com/attachments/1348924942560792656/1466474310091673902/Tiktok-Zefoy-Generator-main.rar?ex=697ce021&is=697b8ea1&hm=a7d39ed78a32b807d727acebf4f7edf1ed1a40fcd9991c08ee5007d0c4bb2e0d&" target="_blank">Download</a>
+          <a class="download-btn" href="https://link-hub.net/3130126/qCZ2c2ai2LHd" target="_blank">Unlock Key</a>
         </div>
-    </main>
+        <p style="margin-top:10px;font-size:11px;opacity:.6">Download the tool normally. Unlock your license key via one quick step.</p>
+      </div>
 
-    <footer>
-        <div>FH5 Trainer</div>
-        <div style="color: #999;">© 2026 Alle Rechte vorbehalten</div>
-    </footer>
+      <div class="card">
+        <img src="fh5-trainer.png" alt="FH5 Trainer" style="width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:14px;box-shadow:0 0 25px rgba(58,160,255,.25)">
+        <h3>FH5-Trainer</h3>
+        <p>Forza 5 mod</p>
+        <a class="download-btn" href="https://linkvertise.com/3130126/5Y5IFrGklpQS?o=sharing" target="_blank">Download</a>
+      </div>
+
+      <div class="card">
+        <img src="hdwi-spoofer.png" alt="HDWI Spoofer" style="width:100%;height:160px;object-fit:cover;border-radius:12px;margin-bottom:14px;box-shadow:0 0 25px rgba(58,160,255,.25)">
+        <h3>HDWI Spoofer</h3>
+        <p>System identity management tool.</p>
+        <a class="download-btn" href="#">Download</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3 -->
+  <section id="keypage" class="page">
+    <div class="hero">
+      <h1>Your License Key</h1>
+      <p>Copy your key below and paste it into the tool.</p>
+      <div style="max-width:420px;margin:30px auto;padding:18px;border:1px solid rgba(58,160,255,.4);border-radius:12px;background:#0b1220;box-shadow:0 0 35px rgba(58,160,255,.2)">
+        <code style="display:block;text-align:center;font-size:18px;letter-spacing:1px">AXION-5678-BBBB</code>
+      </div>
+      <p style="font-size:12px;opacity:.7">If the key does not work, contact support via Discord.</p>
+    </div>
+  </section>
+
+  <footer>© 2026 AXION</footer>
+
+  <script>
+    function showPage(id) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const page = document.getElementById(id);
+      if (page) page.classList.add('active');
+    }
+
+    function openDownloads() {
+      showPage('downloads');
+    }
+
+    // Auto-open key page after CPA redirect
+    if (window.location.hash === '#keypage') {
+      showPage('keypage');
+    }
+
+    // Basic test cases
+    console.assert(typeof openDownloads === 'function', 'openDownloads should be defined');
+    console.assert(document.getElementById('downloads'), 'Downloads page should exist');
+  </script>
 
 </body>
 </html>
